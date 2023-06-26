@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		2C1059A22A48948F0059C68D /* MinesweeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1059A12A48948F0059C68D /* MinesweeperApp.swift */; };
-		2C1059A42A48948F0059C68D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1059A32A48948F0059C68D /* ContentView.swift */; };
+		2C1059A42A48948F0059C68D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1059A32A48948F0059C68D /* HomeView.swift */; };
 		2C1059A62A4894920059C68D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1059A52A4894920059C68D /* Assets.xcassets */; };
 		2C1059A92A4894920059C68D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1059A82A4894920059C68D /* Preview Assets.xcassets */; };
+		2C1059B32A4896F90059C68D /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1059B22A4896F90059C68D /* GameView.swift */; };
+		2C1059B72A4898E40059C68D /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1059B62A4898E40059C68D /* CellModel.swift */; };
+		2C1059B92A48A23A0059C68D /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1059B82A48A23A0059C68D /* GameViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C10599E2A48948F0059C68D /* Minesweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minesweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1059A12A48948F0059C68D /* MinesweeperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinesweeperApp.swift; sourceTree = "<group>"; };
-		2C1059A32A48948F0059C68D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2C1059A32A48948F0059C68D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2C1059A52A4894920059C68D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C1059A82A4894920059C68D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2C1059B22A4896F90059C68D /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		2C1059B62A4898E40059C68D /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
+		2C1059B82A48A23A0059C68D /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +57,10 @@
 		2C1059A02A48948F0059C68D /* Minesweeper */ = {
 			isa = PBXGroup;
 			children = (
+				2C1059AF2A48962D0059C68D /* Models */,
+				2C1059B12A48963C0059C68D /* Views */,
+				2C1059B02A4896350059C68D /* ViewModels */,
 				2C1059A12A48948F0059C68D /* MinesweeperApp.swift */,
-				2C1059A32A48948F0059C68D /* ContentView.swift */,
 				2C1059A52A4894920059C68D /* Assets.xcassets */,
 				2C1059A72A4894920059C68D /* Preview Content */,
 			);
@@ -65,6 +73,31 @@
 				2C1059A82A4894920059C68D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2C1059AF2A48962D0059C68D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2C1059B62A4898E40059C68D /* CellModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2C1059B02A4896350059C68D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2C1059B82A48A23A0059C68D /* GameViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2C1059B12A48963C0059C68D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2C1059A32A48948F0059C68D /* HomeView.swift */,
+				2C1059B22A4896F90059C68D /* GameView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +170,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C1059A42A48948F0059C68D /* ContentView.swift in Sources */,
+				2C1059A42A48948F0059C68D /* HomeView.swift in Sources */,
+				2C1059B32A4896F90059C68D /* GameView.swift in Sources */,
 				2C1059A22A48948F0059C68D /* MinesweeperApp.swift in Sources */,
+				2C1059B92A48A23A0059C68D /* GameViewModel.swift in Sources */,
+				2C1059B72A4898E40059C68D /* CellModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,8 +309,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,8 +339,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

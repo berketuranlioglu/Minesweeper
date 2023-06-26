@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct MinesweeperApp: App {
+    
+    @StateObject var gameViewModel = GameViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                HomeView()
+            }
+            .environmentObject(gameViewModel)
         }
     }
 }
