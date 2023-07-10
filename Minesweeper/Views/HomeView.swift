@@ -15,7 +15,7 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 NavigationLink(destination: GameView(), label: {
-                    Text("\(gameViewModel.cells[0].number)")
+                    Text("Begin game")
                 })
             }
         }
@@ -24,6 +24,10 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        NavigationView {
+            HomeView()
+        }
+        // to prevent the preview crash
+        .environmentObject(GameViewModel())
     }
 }

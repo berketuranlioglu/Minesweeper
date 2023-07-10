@@ -17,19 +17,23 @@ class GameViewModel: ObservableObject {
     
     @Published var cells: [CellModel] = [] {
         didSet {
-            print("This cell is: \(String(describing: cells.last?.number)) and \(String(describing: cells.last?.isMine))")
+            if cells.last?.isMine == true {
+                print("Cell with mine is: \(String(describing: cells.last?.number))")
+            }
         }
     }
     
     init() {
-        createMineField()
+        cells = []
     }
     
     func createMineField() {
         
+        cells = []
+        
         let mineLocations: [Int] = generateMineLocations(numOfMines: 20)
         
-        for i in 1...240 {
+        for i in 0...287 {
             if mineLocations.contains(i) {
                 cells.append(CellModel(number: i, isMine: true))
             } else {
@@ -41,7 +45,7 @@ class GameViewModel: ObservableObject {
     func generateMineLocations(numOfMines: Int) -> [Int] {
         var mineList: [Int] = []
         while mineList.count < numOfMines {
-            let mine = Int.random(in: 1...240)
+            let mine = Int.random(in: 0...287)
             if !mineList.contains(mine) {
                 mineList.append(mine)
             }
