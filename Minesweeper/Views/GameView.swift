@@ -53,7 +53,14 @@ struct Cell: View {
             .border(.black, width: 1)
             // to reveal the cell
             .onTapGesture {
-                isOver = gameViewModel.revealCells(row: row, col: col)
+                if !gameViewModel.mineField[row][col].isFlagged {
+                    if gameViewModel.mineField[row][col].isMine {
+                        gameViewModel.mineField[row][col].isRevealed = true
+                        isOver = true
+                    } else {
+                        gameViewModel.revealCells(row: row, col: col)
+                    }
+                }
             }
             // to flag the cell
             .onLongPressGesture {

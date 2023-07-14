@@ -128,16 +128,23 @@ class GameViewModel: ObservableObject {
         }
     }
     
-    func revealCells(row: Int, col: Int) -> Bool {
-        if !mineField[row][col].isFlagged {
+    // reveals all neighbor cells that are zero
+    func revealCells(row: Int, col: Int) {
+        // check if the cell is neither a bomb, flagged nor revealed
+        if !(mineField[row][col].isMine || mineField[row][col].isFlagged || mineField[row][col].isRevealed) {
+            // cell is okay to be revealed
             mineField[row][col].isRevealed = true
-            if mineField[row][col].isMine {
-                return true
+            // go for the neighbors if the current cell's value is zero
+            if mineField[row][col].neighborMines == 0 {
+                revealCells(row: max(0, row - 1), col: col)                         // upper cell
+                revealCells(row: min(mineField.count - 1, row + 1), col: col)       // lower cell
+                revealCells(row: row, col: max(0, col - 1))                         // left cell
+                revealCells(row: row, col: min(mineField[0].count - 1, col + 1))    // right cell
             }
         }
-        return false
     }
     
+    // flagging the cell
     func flagCell(row: Int, col: Int) {
         if !mineField[row][col].isRevealed {
             mineField[row][col].isFlagged.toggle()
