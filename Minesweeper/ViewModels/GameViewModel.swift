@@ -29,12 +29,12 @@ class GameViewModel: ObservableObject {
         mineField = []
     }
     
-    func createMineField() {
+    func createMineField(numOfMines: Int) {
         
         cells = []
         mineField = []
         
-        let mineLocations: [Int] = generateMineLocations(numOfMines: 20)
+        let mineLocations: [Int] = generateMineLocations(numOfMines: numOfMines)
         
         for i in 0...287 {
             if mineLocations.contains(i) {

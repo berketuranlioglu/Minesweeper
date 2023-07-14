@@ -11,12 +11,29 @@ struct HomeView: View {
     
     @EnvironmentObject var gameViewModel: GameViewModel
     
+    @State private var selectedNum = 48
+    let numOfMinesList = [24, 36, 48, 60]
+    
     var body: some View {
         NavigationView {
-            VStack {
-                NavigationLink(destination: GameView(), label: {
+            VStack(spacing: 40) {
+                NavigationLink(destination: GameView(numOfMines: selectedNum, remainingFlags: selectedNum)
+                    .navigationBarBackButtonHidden(true), label: {
                     Text("Begin game")
                 })
+                .padding(.all)
+                
+                HStack {
+                    Text("How many mines?")
+                    
+                    Picker("Appearance", selection: $selectedNum) {
+                        ForEach(numOfMinesList, id: \.self) {
+                            Text("\($0)")
+                        }
+                    }
+                    .pickerStyle(.automatic)
+                    .accentColor(.black)
+                }
             }
         }
     }

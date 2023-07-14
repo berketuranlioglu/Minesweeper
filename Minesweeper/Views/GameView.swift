@@ -9,7 +9,11 @@ import SwiftUI
 
 struct GameView: View {
     
+    @Environment(\.presentationMode) var presentation
+    
     @StateObject var gameViewModel = GameViewModel()
+    let numOfMines: Int
+    @State var remainingFlags: Int
     
     var body: some View {
         NavigationView {
@@ -18,7 +22,7 @@ struct GameView: View {
                     ForEach(0 ..< gameViewModel.mineField.count, id:\.self) { row in
                         HStack(spacing: 0) {
                             ForEach(0 ..< gameViewModel.mineField[row].count, id:\.self) { col in
-                                Cell(gameViewModel: gameViewModel, row: row, col: col)
+                                Cell(gameViewModel: gameViewModel, row: row, col: col, remainingFlags: $remainingFlags)
                             }
                         }
                         .frame(width: .infinity)
@@ -27,9 +31,26 @@ struct GameView: View {
             }
             .navigationTitle(Text("Minesweeper"))
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        self.presentation.wrappedValue.dismiss()
+                    } label: {
+                        HStack {
+                            Image(systemName: "chevron.backward")
+                            Text("Back")
+                        }
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Text("Flags: \(remainingFlags)")
+                        .fontWeight(.bold)
+                        .font(.system(size: 16))
+                }
+            }
         }
         .onAppear {
-            gameViewModel.createMineField()
+            gameViewModel.createMineField(numOfMines: numOfMines)
         }
     }
 }
@@ -39,10 +60,12 @@ struct Cell: View {
     
     @Environment(\.presentationMode) var presentation
     @State var isOver: Bool = false
+    @State var isSuccess: Bool = false
     
     @StateObject var gameViewModel: GameViewModel
     let row: Int
     let col: Int
+    @Binding var remainingFlags: Int
     
     var body: some View {
         ZStack {
@@ -62,6 +85,14 @@ struct Cell: View {
             // to flag the cell
                 .onLongPressGesture {
                     gameViewModel.flagCell(row: row, col: col)
+                    if gameViewModel.mineField[row][col].isFlagged {
+                        remainingFlags -= 1
+                        if remainingFlags == 0 {
+                            isSuccess = true
+                        }
+                    } else {
+                        remainingFlags += 1
+                    }
                 }
                 .alert(isPresented: $isOver) {
                     Alert(title: Text("Game Over!"),
@@ -69,14 +100,21 @@ struct Cell: View {
                         self.presentation.wrappedValue.dismiss()
                     })
                 }
+            
             if gameViewModel.mineField[row][col].isRevealed {
                 if gameViewModel.mineField[row][col].isMine {
                     ImageView(image: "mine")
-                } else if gameViewModel.mineField[row][col].isFlagged {
-                    ImageView(image: "flag")
                 } else {
                     ImageView(image: "number_\(gameViewModel.mineField[row][col].neighborMines)")
                 }
+            } else if gameViewModel.mineField[row][col].isFlagged {
+                ImageView(image: "flag")
+                    .alert(isPresented: $isSuccess) {
+                        Alert(title: Text("You've done it!"),
+                              dismissButton: .default(Text("Return home")) {
+                            self.presentation.wrappedValue.dismiss()
+                        })
+                    }
             }
         }
     }
@@ -96,6 +134,6 @@ struct ImageView: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView()
+        GameView(numOfMines: 24, remainingFlags: 24)
     }
 }
