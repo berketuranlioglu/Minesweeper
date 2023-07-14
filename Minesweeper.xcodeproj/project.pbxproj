@@ -14,6 +14,7 @@
 		2C1059B32A4896F90059C68D /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1059B22A4896F90059C68D /* GameView.swift */; };
 		2C1059B72A4898E40059C68D /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1059B62A4898E40059C68D /* CellModel.swift */; };
 		2C1059B92A48A23A0059C68D /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1059B82A48A23A0059C68D /* GameViewModel.swift */; };
+		2C90D0582A61926A006A4C2E /* pixelated-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C90D0572A61926A006A4C2E /* pixelated-font.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,8 @@
 		2C1059B22A4896F90059C68D /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		2C1059B62A4898E40059C68D /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
 		2C1059B82A48A23A0059C68D /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		2C90D0572A61926A006A4C2E /* pixelated-font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pixelated-font.ttf"; sourceTree = "<group>"; };
+		2C90D05A2A6192B2006A4C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,10 +60,12 @@
 		2C1059A02A48948F0059C68D /* Minesweeper */ = {
 			isa = PBXGroup;
 			children = (
+				2C90D05A2A6192B2006A4C2E /* Info.plist */,
 				2C1059AF2A48962D0059C68D /* Models */,
 				2C1059B12A48963C0059C68D /* Views */,
 				2C1059B02A4896350059C68D /* ViewModels */,
 				2C1059A12A48948F0059C68D /* MinesweeperApp.swift */,
+				2C90D0592A619279006A4C2E /* Fonts */,
 				2C1059A52A4894920059C68D /* Assets.xcassets */,
 				2C1059A72A4894920059C68D /* Preview Content */,
 			);
@@ -98,6 +103,14 @@
 				2C1059B22A4896F90059C68D /* GameView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2C90D0592A619279006A4C2E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2C90D0572A61926A006A4C2E /* pixelated-font.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C1059A92A4894920059C68D /* Preview Assets.xcassets in Resources */,
+				2C90D0582A61926A006A4C2E /* pixelated-font.ttf in Resources */,
 				2C1059A62A4894920059C68D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +320,7 @@
 				DEVELOPMENT_TEAM = XFBFY2S4T4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Minesweeper/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -336,6 +351,7 @@
 				DEVELOPMENT_TEAM = XFBFY2S4T4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Minesweeper/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

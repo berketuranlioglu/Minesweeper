@@ -13,22 +13,20 @@ struct GameView: View {
     
     var body: some View {
         NavigationView {
-            GeometryReader { geo in
-                VStack {
-                    VStack(spacing: 0) {
-                        ForEach(0 ..< gameViewModel.mineField.count, id:\.self) { row in
-                            HStack(spacing: 0) {
-                                ForEach(0 ..< gameViewModel.mineField[row].count, id:\.self) { col in
-                                    Cell(gameViewModel: gameViewModel, row: row, col: col)
-                                }
+            VStack {
+                VStack(spacing: 0) {
+                    ForEach(0 ..< gameViewModel.mineField.count, id:\.self) { row in
+                        HStack(spacing: 0) {
+                            ForEach(0 ..< gameViewModel.mineField[row].count, id:\.self) { col in
+                                Cell(gameViewModel: gameViewModel, row: row, col: col)
                             }
-                            .frame(width: .infinity)
                         }
+                        .frame(width: .infinity)
                     }
                 }
-                .navigationTitle("Minesweeper")
-                .navigationBarTitleDisplayMode(.inline)
             }
+            .navigationTitle(Text("Minesweeper"))
+            .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear {
             gameViewModel.createMineField()
@@ -47,39 +45,52 @@ struct Cell: View {
     let col: Int
     
     var body: some View {
-        Rectangle()
-            .foregroundColor(gameViewModel.mineField[row][col].isRevealed
-                             ? (gameViewModel.mineField[row][col].isMine ? .red : .green) : .gray)
-            .border(.black, width: 1)
+        ZStack {
+            Image(gameViewModel.mineField[row][col].isRevealed ? "tile_revealed" : "tile_hidden")
+                .resizable()
             // to reveal the cell
-            .onTapGesture {
-                if !gameViewModel.mineField[row][col].isFlagged {
-                    if gameViewModel.mineField[row][col].isMine {
-                        gameViewModel.mineField[row][col].isRevealed = true
-                        isOver = true
-                    } else {
-                        gameViewModel.revealCells(row: row, col: col)
+                .onTapGesture {
+                    if !gameViewModel.mineField[row][col].isFlagged {
+                        if gameViewModel.mineField[row][col].isMine {
+                            gameViewModel.mineField[row][col].isRevealed = true
+                            isOver = true
+                        } else {
+                            gameViewModel.revealCells(row: row, col: col)
+                        }
                     }
                 }
-            }
             // to flag the cell
-            .onLongPressGesture {
-                gameViewModel.flagCell(row: row, col: col)
+                .onLongPressGesture {
+                    gameViewModel.flagCell(row: row, col: col)
+                }
+                .alert(isPresented: $isOver) {
+                    Alert(title: Text("Game Over!"),
+                          dismissButton: .default(Text("Return home")) {
+                        self.presentation.wrappedValue.dismiss()
+                    })
+                }
+            if gameViewModel.mineField[row][col].isRevealed {
+                if gameViewModel.mineField[row][col].isMine {
+                    ImageView(image: "mine")
+                } else if gameViewModel.mineField[row][col].isFlagged {
+                    ImageView(image: "flag")
+                } else {
+                    ImageView(image: "number_\(gameViewModel.mineField[row][col].neighborMines)")
+                }
             }
-            .overlay(
-                // flag is shown with "F"
-                Text(gameViewModel.mineField[row][col].isFlagged
-                     ? "F"
-                     : (gameViewModel.mineField[row][col].isRevealed
-                        ? "\(gameViewModel.mineField[row][col].neighborMines == 0 ? "" : "\(gameViewModel.mineField[row][col].neighborMines)")"
-                        : ""))
-            )
-            .alert(isPresented: $isOver) {
-                Alert(title: Text("Game Over!"),
-                      dismissButton: .default(Text("Return home")) {
-                    self.presentation.wrappedValue.dismiss()
-                })
-            }
+        }
+    }
+}
+
+struct ImageView: View {
+    
+    let image: String
+    
+    var body: some View {
+        Image(image)
+            .resizable()
+            .scaledToFit()
+            .aspectRatio(0.8, contentMode: .fit)
     }
 }
 
