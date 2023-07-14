@@ -29,23 +29,20 @@ struct GameView: View {
                     }
                 }
             }
-            .navigationTitle(Text("Minesweeper"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         self.presentation.wrappedValue.dismiss()
                     } label: {
-                        HStack {
-                            Image(systemName: "chevron.backward")
-                            Text("Back")
-                        }
+                        Text("Home")
+                            .font(.custom("Retro Gaming", size: 14))
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Text("Flags: \(remainingFlags)")
                         .fontWeight(.bold)
-                        .font(.system(size: 16))
+                        .font(.custom("Retro Gaming", size: 14))
                 }
             }
         }
@@ -134,6 +131,6 @@ struct ImageView: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView(numOfMines: 24, remainingFlags: 24)
+        GameView(numOfMines: 48, remainingFlags: 48)
     }
 }

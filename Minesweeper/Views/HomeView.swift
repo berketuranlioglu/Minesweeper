@@ -20,11 +20,13 @@ struct HomeView: View {
                 NavigationLink(destination: GameView(numOfMines: selectedNum, remainingFlags: selectedNum)
                     .navigationBarBackButtonHidden(true), label: {
                     Text("Begin game")
+                            .font(.custom("Retro Gaming", size: 20))
                 })
                 .padding(.all)
                 
                 HStack {
                     Text("How many mines?")
+                        .font(.custom("Retro Gaming", size: 16))
                     
                     Picker("Appearance", selection: $selectedNum) {
                         ForEach(numOfMinesList, id: \.self) {

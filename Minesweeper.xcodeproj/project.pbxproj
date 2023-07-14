@@ -15,6 +15,7 @@
 		2C1059B72A4898E40059C68D /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1059B62A4898E40059C68D /* CellModel.swift */; };
 		2C1059B92A48A23A0059C68D /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1059B82A48A23A0059C68D /* GameViewModel.swift */; };
 		2C90D0582A61926A006A4C2E /* pixelated-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C90D0572A61926A006A4C2E /* pixelated-font.ttf */; };
+		2C90D05C2A61AC5A006A4C2E /* Retro Gaming.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C90D05B2A61AC5A006A4C2E /* Retro Gaming.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		2C1059B82A48A23A0059C68D /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		2C90D0572A61926A006A4C2E /* pixelated-font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pixelated-font.ttf"; sourceTree = "<group>"; };
 		2C90D05A2A6192B2006A4C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2C90D05B2A61AC5A006A4C2E /* Retro Gaming.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Retro Gaming.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 		2C90D0592A619279006A4C2E /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				2C90D05B2A61AC5A006A4C2E /* Retro Gaming.ttf */,
 				2C90D0572A61926A006A4C2E /* pixelated-font.ttf */,
 			);
 			path = Fonts;
@@ -174,6 +177,7 @@
 				2C1059A92A4894920059C68D /* Preview Assets.xcassets in Resources */,
 				2C90D0582A61926A006A4C2E /* pixelated-font.ttf in Resources */,
 				2C1059A62A4894920059C68D /* Assets.xcassets in Resources */,
+				2C90D05C2A61AC5A006A4C2E /* Retro Gaming.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
