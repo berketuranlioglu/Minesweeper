@@ -9,18 +9,17 @@ import SwiftUI
 
 struct GameView: View {
     
-    @EnvironmentObject var gameViewModel: GameViewModel
+    @StateObject var gameViewModel = GameViewModel()
     
     var body: some View {
         NavigationView {
             GeometryReader { geo in
                 VStack {
                     VStack(spacing: 0) {
-                        ForEach(0 ..< gameViewModel.cells.count / 12, id:\.self) { row in
+                        ForEach(0 ..< gameViewModel.mineField.count, id:\.self) { row in
                             HStack(spacing: 0) {
-                                ForEach(0 ..< 12, id:\.self) { column in
-                                    let currentIndex = row * 12 + column
-                                    Cell(currentCell: gameViewModel.cells[currentIndex])
+                                ForEach(0 ..< gameViewModel.mineField[row].count, id:\.self) { column in
+                                    Cell(gameViewModel: gameViewModel, cell: gameViewModel.mineField[row][column])
                                 }
                             }
                             .frame(width: .infinity)
@@ -41,30 +40,38 @@ struct GameView: View {
 struct Cell: View {
     
     @Environment(\.presentationMode) var presentation
-    
-    @State var isPressed: Bool = false
-    @State var isLongPressed: Bool = false
     @State var isOver: Bool = false
-    let currentCell: CellModel
+    
+    @StateObject var gameViewModel: GameViewModel
+    @State var cell: CellModel
     
     var body: some View {
         Rectangle()
-            .foregroundColor(isPressed ? (currentCell.isMine ? .red : .green) : .gray)
+            .foregroundColor(cell.isRevealed ? (cell.isMine ? .red : .green) : .gray)
             .border(.black, width: 1)
             // to reveal the cell
             .onTapGesture {
-                isPressed = true
-                if currentCell.isMine {
-                    isOver = true
+                
+                if !cell.isFlagged {
+                    cell.isRevealed = true
+                    if cell.isMine {
+                        isOver = true
+                    }
                 }
             }
             // to flag the cell
             .onLongPressGesture {
-                isLongPressed.toggle()
+                if !cell.isRevealed {
+                    cell.isFlagged.toggle()
+                }
             }
             .overlay(
                 // flag is shown with "F"
-                Text(isLongPressed ? "F" : "")
+                Text(cell.isFlagged
+                     ? "F"
+                     : (cell.isRevealed
+                        ? "\(cell.neighborMines == 0 ? "" : "\(cell.neighborMines)")"
+                        : ""))
             )
             .alert(isPresented: $isOver) {
                 Alert(title: Text("Game Over!"),
@@ -78,6 +85,5 @@ struct Cell: View {
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
         GameView()
-            .environmentObject(GameViewModel())
     }
 }
