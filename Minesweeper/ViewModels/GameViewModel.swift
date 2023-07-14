@@ -130,5 +130,5 @@ class GameViewModel: ObservableObject {
     
     func revealCells() {
         
-    }ß
+    }
 }
