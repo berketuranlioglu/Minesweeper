@@ -128,7 +128,19 @@ class GameViewModel: ObservableObject {
         }
     }
     
-    func revealCells() {
-        
+    func revealCells(row: Int, col: Int) -> Bool {
+        if !mineField[row][col].isFlagged {
+            mineField[row][col].isRevealed = true
+            if mineField[row][col].isMine {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func flagCell(row: Int, col: Int) {
+        if !mineField[row][col].isRevealed {
+            mineField[row][col].isFlagged.toggle()
+        }
     }
 }

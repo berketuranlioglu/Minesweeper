@@ -18,8 +18,8 @@ struct GameView: View {
                     VStack(spacing: 0) {
                         ForEach(0 ..< gameViewModel.mineField.count, id:\.self) { row in
                             HStack(spacing: 0) {
-                                ForEach(0 ..< gameViewModel.mineField[row].count, id:\.self) { column in
-                                    Cell(gameViewModel: gameViewModel, cell: gameViewModel.mineField[row][column])
+                                ForEach(0 ..< gameViewModel.mineField[row].count, id:\.self) { col in
+                                    Cell(gameViewModel: gameViewModel, row: row, col: col)
                                 }
                             }
                             .frame(width: .infinity)
@@ -43,34 +43,28 @@ struct Cell: View {
     @State var isOver: Bool = false
     
     @StateObject var gameViewModel: GameViewModel
-    @State var cell: CellModel
+    let row: Int
+    let col: Int
     
     var body: some View {
         Rectangle()
-            .foregroundColor(cell.isRevealed ? (cell.isMine ? .red : .green) : .gray)
+            .foregroundColor(gameViewModel.mineField[row][col].isRevealed
+                             ? (gameViewModel.mineField[row][col].isMine ? .red : .green) : .gray)
             .border(.black, width: 1)
             // to reveal the cell
             .onTapGesture {
-                
-                if !cell.isFlagged {
-                    cell.isRevealed = true
-                    if cell.isMine {
-                        isOver = true
-                    }
-                }
+                isOver = gameViewModel.revealCells(row: row, col: col)
             }
             // to flag the cell
             .onLongPressGesture {
-                if !cell.isRevealed {
-                    cell.isFlagged.toggle()
-                }
+                gameViewModel.flagCell(row: row, col: col)
             }
             .overlay(
                 // flag is shown with "F"
-                Text(cell.isFlagged
+                Text(gameViewModel.mineField[row][col].isFlagged
                      ? "F"
-                     : (cell.isRevealed
-                        ? "\(cell.neighborMines == 0 ? "" : "\(cell.neighborMines)")"
+                     : (gameViewModel.mineField[row][col].isRevealed
+                        ? "\(gameViewModel.mineField[row][col].neighborMines == 0 ? "" : "\(gameViewModel.mineField[row][col].neighborMines)")"
                         : ""))
             )
             .alert(isPresented: $isOver) {
