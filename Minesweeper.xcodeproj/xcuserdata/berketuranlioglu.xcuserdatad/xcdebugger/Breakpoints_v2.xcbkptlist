@@ -3,4 +3,132 @@
    uuid = "F8FA7095-DA5B-43DF-84AE-0904D039F60E"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E13A8A5-2442-408A-BA10-1E8F54C7D52F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Minesweeper/ViewModels/GameViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "revealTheCell(row:col:gameOver:userWins:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2E13A8A5-2442-408A-BA10-1E8F54C7D52F - 50355b91a74f4e4f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Minesweeper.GameViewModel.revealTheCell(row: Swift.Int, col: Swift.Int, action: () -&gt; ()) -&gt; ()"
+                  moduleName = "Minesweeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/berketuranlioglu/Desktop/Swift/MyProjects/Minesweeper/Minesweeper/ViewModels/GameViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "155"
+                  endingLineNumber = "155"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "2E13A8A5-2442-408A-BA10-1E8F54C7D52F - 50355b91a74f4ec3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Minesweeper.GameViewModel.revealTheCell(row: Swift.Int, col: Swift.Int, action: () -&gt; ()) -&gt; ()"
+                  moduleName = "Minesweeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/berketuranlioglu/Desktop/Swift/MyProjects/Minesweeper/Minesweeper/ViewModels/GameViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "2E13A8A5-2442-408A-BA10-1E8F54C7D52F - e461860372cafe85"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Minesweeper.GameViewModel.revealTheCell(row: Swift.Int, col: Swift.Int, gameOver: () -&gt; (), userWins: () -&gt; ()) -&gt; ()"
+                  moduleName = "Minesweeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/berketuranlioglu/Desktop/Swift/MyProjects/Minesweeper/Minesweeper/ViewModels/GameViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
+                  offsetFromSymbolStart = "212">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "03163DC1-D2DC-4AC8-BE2D-0022B38284CB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Minesweeper/Views/GameView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "03163DC1-D2DC-4AC8-BE2D-0022B38284CB - d91184c08f8e78eb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.alert(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, content: () -&gt; SwiftUI.Alert) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI._ConditionalContent&lt;Minesweeper.ImageView, Minesweeper.ImageView&gt;&gt;)&gt; in Minesweeper.Cell.body.getter : some"
+                  moduleName = "Minesweeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/berketuranlioglu/Desktop/Swift/MyProjects/Minesweeper/Minesweeper/Views/GameView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "255">
+               </Location>
+               <Location
+                  uuid = "03163DC1-D2DC-4AC8-BE2D-0022B38284CB - 54866303d5c4b0a5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.alert(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, content: () -&gt; SwiftUI.Alert) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI._ConditionalContent&lt;Minesweeper.ImageView, Minesweeper.ImageView&gt;&gt;)&gt; in Minesweeper.Cell.body.getter : some"
+                  moduleName = "Minesweeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/berketuranlioglu/Desktop/Swift/MyProjects/Minesweeper/Minesweeper/Views/GameView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "34">
+               </Location>
+               <Location
+                  uuid = "03163DC1-D2DC-4AC8-BE2D-0022B38284CB - 54866303d5c4b0a5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.alert(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, content: () -&gt; SwiftUI.Alert) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI._ConditionalContent&lt;Minesweeper.ImageView, Minesweeper.ImageView&gt;&gt;)&gt; in Minesweeper.Cell.body.getter : some"
+                  moduleName = "Minesweeper"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/berketuranlioglu/Desktop/Swift/MyProjects/Minesweeper/Minesweeper/Views/GameView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "27">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

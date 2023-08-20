@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI  // for Binding parameters passed to functions
 
 let dummyCells = [
     CellModel(number: 1, isMine: false),
@@ -23,6 +24,9 @@ class GameViewModel: ObservableObject {
         }
     }
     @Published var mineField: [[CellModel]] = [[]]
+    @Published var remainingFlags: Int = 0
+    var revealedCells: Int = 0
+    var numberOfMines: Int = 0
     
     init() {
         cells = []
@@ -57,6 +61,8 @@ class GameViewModel: ObservableObject {
                 mineList.append(mine)
             }
         }
+        remainingFlags = numOfMines
+        numberOfMines = numOfMines
         print(mineList)
         return mineList
     }
@@ -129,25 +135,62 @@ class GameViewModel: ObservableObject {
     }
     
     // reveals all neighbor cells that are zero
-    func revealCells(row: Int, col: Int) {
+    func revealNeighborCells(row: Int, col: Int) {
         // check if the cell is neither a bomb, flagged nor revealed
         if !(mineField[row][col].isMine || mineField[row][col].isFlagged || mineField[row][col].isRevealed) {
             // cell is okay to be revealed
             mineField[row][col].isRevealed = true
+            revealedCells += 1
             // go for the neighbors if the current cell's value is zero
             if mineField[row][col].neighborMines == 0 {
-                revealCells(row: max(0, row - 1), col: col)                         // upper cell
-                revealCells(row: min(mineField.count - 1, row + 1), col: col)       // lower cell
-                revealCells(row: row, col: max(0, col - 1))                         // left cell
-                revealCells(row: row, col: min(mineField[0].count - 1, col + 1))    // right cell
+                revealNeighborCells(row: max(0, row - 1), col: col)                                                     // upper cell
+                revealNeighborCells(row: max(0, row - 1), col: max(0, col - 1))                                         // upper left
+                revealNeighborCells(row: max(0, row - 1), col: min(mineField[0].count - 1, col + 1))                    // upper right
+                revealNeighborCells(row: min(mineField.count - 1, row + 1), col: col)                                   // lower
+                revealNeighborCells(row: min(mineField.count - 1, row + 1), col: max(0, col - 1))                       // lower left
+                revealNeighborCells(row: min(mineField.count - 1, row + 1), col: min(mineField[0].count - 1, col + 1))  // lower right
+                revealNeighborCells(row: row, col: max(0, col - 1))                                                     // left
+                revealNeighborCells(row: row, col: min(mineField[0].count - 1, col + 1))                                // right
             }
         }
     }
     
-    // flagging the cell
+    func revealTheCell(row: Int, col: Int, gameOver: () -> Void, userWins: () -> Void) {
+        if !mineField[row][col].isFlagged {
+            if mineField[row][col].isMine {
+                mineField[row][col].isRevealed = true
+                gameOver()
+            } else {
+                revealNeighborCells(row: row, col: col)
+                userWins()
+            }
+        }
+    }
+    
+    func checkIfPlayerWins() -> Bool {
+        return 288 - revealedCells == numberOfMines
+    }
+    
+    // flagging a cell
     func flagCell(row: Int, col: Int) {
-        if !mineField[row][col].isRevealed {
+        // number of flags has to be more than zero
+        if remainingFlags > 0 {
+            
+            // put / remove the flag
+            if !mineField[row][col].isRevealed {
+                mineField[row][col].isFlagged.toggle()
+            }
+            
+            if mineField[row][col].isFlagged {
+                remainingFlags -= 1
+            } else {
+                remainingFlags += 1
+            }
+        }
+        // or the player can only remove the flag
+        else if mineField[row][col].isFlagged {
             mineField[row][col].isFlagged.toggle()
+            remainingFlags += 1
         }
     }
 }

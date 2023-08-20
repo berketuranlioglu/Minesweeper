@@ -10,40 +10,56 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var gameViewModel: GameViewModel
-    @State private var selectedNum = 48
+    @State private var selectedNum = 36
     @State var instructionsPressed: Bool = false
+    @State var rootActive: Bool = false
     
     var body: some View {
-        NavigationView {
-            VStack {
+        VStack {
+            
+            Text("MINESWEEPER")
+                .font(.custom("Retro Gaming", size: 36))
+                .padding(.top, 40)
                 
-                Text("MINESWEEPER")
-                    .font(.custom("Retro Gaming", size: 36))
-                    .padding(.bottom, 160)
-                
-                NavigationLink(destination: GameView(numOfMines: selectedNum, remainingFlags: selectedNum)
-                    .navigationBarBackButtonHidden(true), label: {
-                    Text("Begin game")
-                            .font(.custom("Retro Gaming", size: 20))
-                })
+            Spacer()
+            
+            StartButton(selectedNum: $selectedNum, rootActive: $rootActive)
+            
+            Text("How many mines?")
+                .font(.custom("Retro Gaming", size: 16))
                 .padding(.all, 20)
-                
-                Text("How many mines?")
-                    .font(.custom("Retro Gaming", size: 16))
-                    .padding(.all, 20)
-                
-                MinePicker(selectedNum: $selectedNum)
-                
-                Spacer()
-                
-                Instructions()
-                
-                Spacer()
-                
-                Link("Check GitHub for more projects!", destination: URL(string: "https://github.com/berketuranlioglu")!)
-                    .font(.custom("Retro Gaming", size: 12))
-            }
+            
+            MinePicker(selectedNum: $selectedNum)
+            
+            Spacer()
+                .frame(height: 16)
+            
+            Instructions()
+            
+            Spacer()
+                .frame(height: 16)
+            
+            Link("Check GitHub for more projects!",
+                 destination: URL(string: "https://github.com/berketuranlioglu")!)
+                .font(.custom("Retro Gaming", size: 14))
         }
+        .padding(.vertical, 20)
+    }
+}
+
+struct StartButton: View {
+    
+    @Binding var selectedNum: Int
+    @Binding var rootActive: Bool
+    
+    var body: some View {
+        NavigationLink(destination: GameView(numOfMines: selectedNum, rootActive: $rootActive)
+            .navigationBarBackButtonHidden(true), isActive: self.$rootActive, label: {
+                Text("Start the game")
+                    .font(.custom("Retro Gaming", size: 20))
+            })
+        .isDetailLink(false)
+        .padding(.all, 20)
     }
 }
 
@@ -51,42 +67,30 @@ struct MinePicker: View {
     
     @Binding var selectedNum: Int
     
+    let options: [Int] = [24, 36, 48]
+    
     var body: some View {
         HStack {
-            Button(action: {
-                selectedNum = 36
-            }, label: {
-                Text("36")
-                    .font(.custom("Retro Gaming", size: 16))
-                    .foregroundColor(selectedNum == 36 ? .blue : .black)
-            })
-            Spacer()
-            Button(action: {
-                selectedNum = 48
-            }, label: {
-                Text("48")
-                    .font(.custom("Retro Gaming", size: 16))
-                    .foregroundColor(selectedNum == 48 ? .blue : .black)
-            })
-            Spacer()
-            Button(action: {
-                selectedNum = 60
-            }, label: {
-                Text("60")
-                    .font(.custom("Retro Gaming", size: 16))
-                    .foregroundColor(selectedNum == 60 ? .blue : .black)
-            })
+            ForEach(options, id: \.self) { option in
+                Button(action: {
+                    selectedNum = option
+                }, label: {
+                    Text("\(option)")
+                        .font(.custom("Retro Gaming", size: 16))
+                        .foregroundColor(selectedNum == option ? .blue : .black)
+                })
+                .padding(.horizontal)
+            }
         }
-        .frame(width: 160)
     }
     
 }
 
 struct Instructions: View {
     var body: some View {
-        Text("Put a flag (tap and hold) if you think that the cell contains a bomb underneath it. You win the game when you place all the flags correctly.")
-            .font(.custom("Retro Gaming", size: 12))
-            .padding(.all, 40)
+        Text("Put a flag (tap and hold) if you think that the cell contains a bomb underneath it. You win the game when you reveal all the cells except bombs.")
+            .font(.custom("Retro Gaming", size: 14))
+            .padding(.all, 44)
     }
 }
 
