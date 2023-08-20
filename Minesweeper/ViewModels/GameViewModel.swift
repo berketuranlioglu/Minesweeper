@@ -2,7 +2,7 @@
 //  GameViewModel.swift
 //  Minesweeper
 //
-//  Created by Berke Turanlıoğlu on 25.06.2023.
+//  Created by Berke Turanlıoğlu on 15.08.2023.
 //
 
 import Foundation
