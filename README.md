@@ -1,5 +1,7 @@
 # Minesweeper
 
+-- If you want to see the demo regarding the game, check out [my LinkedIn post](https://www.linkedin.com/feed/update/urn:li:activity:7099008685447786496/).
+
 Starter project to understand SwiftUI with MVVM architecture.
 
 Try it out yourself! Here are the [rules](https://minesweepergame.com/strategy/how-to-play-minesweeper.php) if you are playing it first time.
